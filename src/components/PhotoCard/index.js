@@ -1,34 +1,41 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
-import { Article, ImgWrapper, Img, Button } from "./styles";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import React from "react";
+import { Article, ImgWrapper, Img } from "./styles";
 
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
+import { FavButton } from "../FavButton";
+import { useLikePhoto } from "../../hooks/useToggleLikeMutations";
 
 const DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60";
+  "https://3.bp.blogspot.com/-T_2Mk0VWsPs/WKh_DNP_02I/AAAAAAAABF4/oBTlwNI52u8mdo9Y5deIxBzg7Em4n2pvQCLcB/s400/loading%2Bgif%2B1.gif";
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
   const [show, element] = useNearScreen();
   const key = `like-${id}`;
   const [liked, setLiked] = useLocalStorage(key, false);
+  const [toggleLike] = useLikePhoto();
 
-  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+  const handleFavClick = () => {
+    setLiked(!liked);
+    !liked && toggleLike({ variables: { input: { id } } });
+  };
 
   return (
     <Article ref={element}>
       {show && (
-        <Fragment>
+        <>
           <a href={`/?detail=${id}`}>
             <ImgWrapper>
               <Img src={src} />
             </ImgWrapper>
           </a>
 
-          <Button onClick={() => setLiked(!liked)}>
-            <Icon size="32px" /> {likes} likes!
-          </Button>
-        </Fragment>
+          <FavButton
+            liked={liked}
+            likes={likes}
+            onClick={() => handleFavClick(id)}
+          />
+        </>
       )}
     </Article>
   );
