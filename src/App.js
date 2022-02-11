@@ -17,18 +17,18 @@ export const App = () => {
   }
   return (
     <div>
-      <GlobalStyle />
-      <Logo />
-      {detailId ? (
-        <PhotoCard key={data} {...data.photo} />
-      ) : (
-        <Router>
+      <Router>
+        <GlobalStyle />
+        <Logo />
+        {detailId ? (
+          <PhotoCard key={data} {...data.photo} />
+        ) : (
           <Routes>
             <Route path="/pet/:id" element={<Home />}></Route>
             <Route path="/" element={<Home />}></Route>
           </Routes>
-        </Router>
-      )}
+        )}
+      </Router>
     </div>
   );
 };
