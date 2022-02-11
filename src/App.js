@@ -1,11 +1,10 @@
 import React from "react";
-import { ListOfCategories } from "./components/ListOfCategories";
 import { GlobalStyle } from "./styles/GlobalStyles";
-import { ListOfPhotoCards } from "./components/ListOfPhotoCards";
 import { Logo } from "./components/Logo";
-import { useGetPhotos } from "./hooks/useGetPhotos";
 import { PhotoCard } from "./components/PhotoCard";
 import { useGetSinglePhoto } from "./hooks/useGetSinglePhoto";
+import { Home } from "./pages/Home";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 export const App = () => {
   const urlParams = new window.URLSearchParams(window.location.search);
@@ -13,6 +12,7 @@ export const App = () => {
   const { loading, error, data = {} } = useGetSinglePhoto(detailId);
 
   {
+    console.log(urlParams.get("detailId"));
     console.log(data);
   }
   return (
@@ -22,10 +22,12 @@ export const App = () => {
       {detailId ? (
         <PhotoCard key={data} {...data.photo} />
       ) : (
-        <>
-          <ListOfCategories />
-          <ListOfPhotoCards categoryId={1} />
-        </>
+        <Router>
+          <Routes>
+            <Route path="/pet/:id" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
+          </Routes>
+        </Router>
       )}
     </div>
   );

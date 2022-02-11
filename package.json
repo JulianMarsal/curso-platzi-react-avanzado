@@ -7,7 +7,7 @@
     "now-build": "npm run build",
     "build": "webpack",
     "lint": "standard",
-    "dev": "webpack serve --mode development --env development --open",
+    "dev": "webpack serve --mode development --env development --history-api-fallback --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -40,6 +40,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-router-dom": "^6.2.1",
     "styled-components": "^5.3.3"
   },
   "standard": {
