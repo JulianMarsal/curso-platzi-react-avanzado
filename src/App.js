@@ -1,9 +1,9 @@
 import React from "react";
 import { GlobalStyle } from "./styles/GlobalStyles";
 import { Logo } from "./components/Logo";
-import { PhotoCard } from "./components/PhotoCard";
 import { useGetSinglePhoto } from "./hooks/useGetSinglePhoto";
 import { Home } from "./pages/Home";
+import { NavBar } from "./components/NavBar";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Detail } from "./pages/Detail";
 const urlParams = new window.URLSearchParams(window.location.search);
@@ -28,6 +28,7 @@ export const App = () => {
           <Route path="/pet/:id" element={<Home />}></Route>
           <Route path="/" element={<Home />}></Route>
         </Routes>
+        <NavBar />
       </BrowserRouter>
     </div>
   );

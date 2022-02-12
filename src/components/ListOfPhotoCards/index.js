@@ -4,7 +4,6 @@ import { useGetPhotos } from "../../hooks/useGetPhotos";
 
 export const ListOfPhotoCards = ({ categoryId }) => {
   const { loading, error, data } = useGetPhotos(categoryId);
-  console.log("categoryID:" + categoryId);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>error...</p>;
 

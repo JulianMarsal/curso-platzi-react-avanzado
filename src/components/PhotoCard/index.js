@@ -1,6 +1,5 @@
 import React from "react";
 import { Article, ImgWrapper, Img } from "./styles";
-
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { FavButton } from "../FavButton";
