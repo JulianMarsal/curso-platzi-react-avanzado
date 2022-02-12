@@ -5,6 +5,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { FavButton } from "../FavButton";
 import { useLikePhoto } from "../../hooks/useToggleLikeMutations";
+import { Link } from "react-router-dom";
 
 const DEFAULT_IMAGE =
   "https://3.bp.blogspot.com/-T_2Mk0VWsPs/WKh_DNP_02I/AAAAAAAABF4/oBTlwNI52u8mdo9Y5deIxBzg7Em4n2pvQCLcB/s400/loading%2Bgif%2B1.gif";
@@ -24,11 +25,11 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
     <Article ref={element}>
       {show && (
         <>
-          <a href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} />
             </ImgWrapper>
-          </a>
+          </Link>
 
           <FavButton
             liked={liked}
