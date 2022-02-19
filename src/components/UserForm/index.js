@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { useInputValue } from "../../hooks/useInputValue";
+import { Form, Input, Button, Title } from "./styles";
 
-export const UserForm = ({ aproveAuth }) => {
+export const UserForm = ({ aproveAuth, title }) => {
   const form = useRef(null);
   const email = useInputValue("");
   const password = useInputValue("");
@@ -14,13 +15,14 @@ export const UserForm = ({ aproveAuth }) => {
   };
   return (
     <>
-      <form ref={form}>
-        <input {...email} placeholder="Email" />
-        <input {...password} type="password" placeholder="Password" />
-        <button type="submit" onClick={handleSubmit}>
-          Sing in
-        </button>
-      </form>
+      <Title>{title}</Title>
+      <Form ref={form}>
+        <Input {...email} placeholder="Email" />
+        <Input {...password} type="password" placeholder="Password" />
+        <Button type="submit" onClick={handleSubmit}>
+          {title}
+        </Button>
+      </Form>
     </>
   );
 };

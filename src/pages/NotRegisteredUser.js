@@ -3,17 +3,21 @@ import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { UserForm } from "../components/UserForm";
-import { User } from "./User";
 
 export const NotRegisteredUser = () => {
   //const history = useHistory();
   const { login } = useContext(AppContext);
 
   const handleSubmit = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     login(e);
     //history.push("/user");
   };
 
-  return <UserForm aproveAuth={handleSubmit} />;
+  return (
+    <>
+      <UserForm title="Registrarse" aproveAuth={handleSubmit} />
+      <UserForm title="Iniciar Sesión  " aproveAuth={handleSubmit} />
+    </>
+  );
 };
