@@ -1,28 +1,47 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { useInputValue } from "../../hooks/useInputValue";
-import { Form, Input, Button, Title } from "./styles";
+import { Form, Input, Button, Title, Error } from "./styles";
 
-export const UserForm = ({ aproveAuth, title }) => {
-  const form = useRef(null);
-  const email = useInputValue("");
-  const password = useInputValue("");
+const UserForm = ({ error, onSubmit, title, disabled }) => {
+  const [form, setForm] = useState({ email: "", password: "" });
 
-  const handleSubmit = () => {
-    const formData = new FormData(form.current);
-    const formEntries = Object.fromEntries(formData);
-    console.log(formEntries);
-    aproveAuth();
+  const handleForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit({ email: form.email, password: form.password });
+  };
+
   return (
-    <>
-      <Title>{title}</Title>
-      <Form ref={form}>
-        <Input {...email} placeholder="Email" />
-        <Input {...password} type="password" placeholder="Password" />
-        <Button type="submit" onClick={handleSubmit}>
-          {title}
-        </Button>
+    <React.Fragment>
+      <Form disabled={disabled} onSubmit={handleSubmit}>
+        <Title>{title}</Title>
+        <Input
+          disabled={disabled}
+          placeholder="Email"
+          name="email"
+          value={form.email}
+          onChange={handleForm}
+        />
+        <Input
+          disabled={disabled}
+          placeholder="Password"
+          name="password"
+          type="password"
+          value={form.password}
+          onChange={handleForm}
+        />
+
+        <Button disabled={disabled}>{title}</Button>
       </Form>
-    </>
+      {error && <Error>{error}</Error>}
+    </React.Fragment>
   );
 };
+
+export default UserForm;
