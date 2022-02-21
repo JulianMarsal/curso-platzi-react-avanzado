@@ -1,6 +1,5 @@
 import React from "react";
-import { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import UserForm from "../components/UserForm";
 import { useRegisterMutation } from "../hooks/useRegisterMutation";
@@ -16,13 +15,19 @@ export const NotRegisteredUser = () => {
   const onSubmitRegister = ({ email, password }) => {
     const input = { email, password };
     const variable = { input };
-    registerMutation({ variables: variable }).then(setLogin);
+    registerMutation({ variables: variable }).then(({ data }) => {
+      const { singup } = data;
+      setLogin(singup);
+    });
   };
 
   const onSubmitLogin = ({ email, password }) => {
     const input = { email, password };
     const variable = { input };
-    login({ variables: variable }).then(setLogin);
+    login({ variables: variable }).then(({ data }) => {
+      const { login } = data;
+      setLogin(login);
+    });
   };
 
   const errorRegisterMsg =
