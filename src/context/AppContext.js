@@ -4,14 +4,17 @@ import { createContext, useState } from "react";
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(() => {
+    return window.sessionStorage.getItem("token");
+  });
   const user = { isAuth };
-  const login = () => {
+  const setLogin = (token) => {
     setIsAuth(true);
+    window.sessionStorage.setItem("token", token);
   };
 
   return (
-    <AppContext.Provider value={{ user, login }}>
+    <AppContext.Provider value={{ user, setLogin }}>
       {children}
     </AppContext.Provider>
   );

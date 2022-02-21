@@ -4,27 +4,46 @@ import { useHistory } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import UserForm from "../components/UserForm";
 import { useRegisterMutation } from "../hooks/useRegisterMutation";
+import { useLoginMutation } from "../hooks/useLoginMutation";
 
 export const NotRegisteredUser = () => {
   //const history = useHistory();
-  const { login } = useContext(AppContext);
-  const { registerMutation, data, loading, error } = useRegisterMutation();
+  const { setLogin } = useContext(AppContext);
+  const { registerMutation, loadingRegister, errorRegister } =
+    useRegisterMutation();
+  const { login, loadingLogin, errorLogin } = useLoginMutation();
 
-  const onSubmit = ({ email, password }) => {
+  const onSubmitRegister = ({ email, password }) => {
     const input = { email, password };
     const variable = { input };
-    registerMutation({ variables: variable }).then(login);
+    registerMutation({ variables: variable }).then(setLogin);
   };
-  const errorMsg = error && "El usuario ya existe o hay algún problema.";
+
+  const onSubmitLogin = ({ email, password }) => {
+    const input = { email, password };
+    const variable = { input };
+    login({ variables: variable }).then(setLogin);
+  };
+
+  const errorRegisterMsg =
+    errorRegister && "El usuario ya existe o hay algún problema.";
+  const errorLoginMsg =
+    errorLogin && "El usuario o la contraseñas no son correctas.";
   return (
     <React.Fragment>
       <UserForm
-        onSubmit={onSubmit}
-        disabled={loading}
-        error={errorMsg}
+        onSubmit={onSubmitRegister}
+        disabled={loadingRegister}
+        error={errorRegisterMsg}
         title="Registrarse"
       />
-      <UserForm onSubmit={login} title="Iniciar Sesion" />
+
+      <UserForm
+        onSubmit={onSubmitLogin}
+        disabled={loadingLogin}
+        error={errorLoginMsg}
+        title="Iniciar Sesion"
+      />
     </React.Fragment>
   );
 };
