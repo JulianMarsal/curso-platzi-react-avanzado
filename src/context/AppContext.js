@@ -12,9 +12,14 @@ export const AppProvider = ({ children }) => {
     setIsAuth(true);
     window.sessionStorage.setItem("token", token);
   };
+  const logOut = () => {
+    setIsAuth(false);
+    window.sessionStorage.removeItem("token");
+    __APOLLO_CLIENT__.resetStore();
+  };
 
   return (
-    <AppContext.Provider value={{ user, setLogin }}>
+    <AppContext.Provider value={{ user, setLogin, logOut }}>
       {children}
     </AppContext.Provider>
   );
