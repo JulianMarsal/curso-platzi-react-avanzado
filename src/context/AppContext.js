@@ -15,7 +15,10 @@ export const AppProvider = ({ children }) => {
   const logOut = () => {
     setIsAuth(false);
     window.sessionStorage.removeItem("token");
-    __APOLLO_CLIENT__.resetStore();
+    //   useEffect(() => {
+    //     __APOLLO_CLIENT__.resetStore()
+    //   }, [isAuth])
+    // }
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { SubmitButton } from "../components/SubmitButton";
 import { AppContext } from "../context/AppContext";
 
 export const User = () => {
@@ -6,7 +7,7 @@ export const User = () => {
   return (
     <>
       <h1>User</h1>
-      <button onClick={logOut}>Cerrar Cesión</button>
+      <SubmitButton onClick={logOut}>Cerrar Cesión</SubmitButton>
     </>
   );
 };
