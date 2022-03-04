@@ -1,7 +1,7 @@
 import React from "react";
 import { FavsWithQuery } from "../hooks/useGetFavorites";
 import { Layout } from "../components/Layout";
-export const Favs = () => {
+export default () => {
   return (
     <Layout
       title="Favoritas"

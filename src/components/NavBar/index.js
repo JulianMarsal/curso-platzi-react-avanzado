@@ -4,7 +4,7 @@ import { MdHome, MdFavoriteBorder, MdPersonOutline } from "react-icons/md";
 
 const SIZE = "32px";
 
-export const NavBar = () => {
+export default () => {
   return (
     <Nav>
       <Link to="/">

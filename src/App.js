@@ -1,25 +1,26 @@
 import React from "react";
 import { GlobalStyle } from "./styles/GlobalStyles";
 import { Logo } from "./components/Logo";
-import { Home } from "./pages/Home";
-import { NavBar } from "./components/NavBar";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import { Detail } from "./pages/Detail";
-import { User } from "./pages/User";
-import { NotRegisteredUser } from "./pages/NotRegisteredUser";
-import { Favs } from "./pages/Favs";
-import { useContext } from "react";
+import { useContext, Suspense } from "react";
 import { AppContext } from "./context/AppContext";
-import { NotFound } from "./pages/NotFound";
+import Spinner from "./components/Spinner";
 
+const Home = React.lazy(() => import("./pages/Home"));
+const Detail = React.lazy(() => import("./pages/Detail"));
 const Favs = React.lazy(() => import("./pages/Favs"));
+const User = React.lazy(() => import("./pages/User"));
+const NotRegisteredUser = React.lazy(() => import("./pages/NotRegisteredUser"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const NavBar = React.lazy(() => import("./components/NavBar"));
+
 export const App = () => {
   const {
     user: { isAuth },
   } = useContext(AppContext);
   console.log(isAuth);
   return (
-    <div>
+    <Suspense fallback={<Spinner />}>
       <BrowserRouter>
         <GlobalStyle />
         <Logo />
@@ -47,6 +48,6 @@ export const App = () => {
         </Routes>
         <NavBar />
       </BrowserRouter>
-    </div>
+    </Suspense>
   );
 };

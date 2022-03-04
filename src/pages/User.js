@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { SubmitButton } from "../components/SubmitButton";
 import { AppContext } from "../context/AppContext";
 
-export const User = () => {
+export default () => {
   const { logOut } = useContext(AppContext);
   return (
     <>

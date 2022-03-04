@@ -4,7 +4,7 @@ import { ListOfPhotoCards } from "../components/ListOfPhotoCards";
 import { useParams } from "react-router";
 import { Helmet } from "react-helmet";
 
-export const Home = () => {
+export default () => {
   //   const { id } = props.match.params
   const params = useParams();
 
