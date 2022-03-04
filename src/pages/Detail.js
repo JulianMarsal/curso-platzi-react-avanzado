@@ -2,10 +2,15 @@ import React from "react";
 import { useGetSinglePhoto } from "../hooks/useGetSinglePhoto";
 import { useParams } from "react-router";
 import { PhotoCard } from "../components/PhotoCard";
+import { Layout } from "../components/Layout";
 
 export const Detail = () => {
   const params = useParams();
   const { loading, error, data = {} } = useGetSinglePhoto(params.detailId);
 
-  return <PhotoCard key={data} {...data.photo} />;
+  return (
+    <Layout title={`Fotografía ${params.detailId}`} showTitle={true}>
+      <PhotoCard key={data} {...data.photo} />
+    </Layout>
+  );
 };

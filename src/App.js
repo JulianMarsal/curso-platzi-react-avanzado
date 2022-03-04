@@ -11,6 +11,8 @@ import { Favs } from "./pages/Favs";
 import { useContext } from "react";
 import { AppContext } from "./context/AppContext";
 import { NotFound } from "./pages/NotFound";
+
+const Favs = React.lazy(() => import("./pages/Favs"));
 export const App = () => {
   const {
     user: { isAuth },
