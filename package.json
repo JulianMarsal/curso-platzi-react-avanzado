@@ -8,7 +8,8 @@
     "build": "webpack",
     "lint": "standard",
     "dev": "webpack serve --mode development --env development --history-api-fallback --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve:dev": "webpack --mode development && npx serve dist -s"
   },
   "repository": {
     "type": "git",
@@ -31,12 +32,14 @@
     "webpack": "^5.67.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.3",
+    "webpack-pwa-manifest": "^4.3.0",
     "wepack-cli": "^0.0.1-security"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
     "graphql": "^16.3.0",
     "intersection-observer": "^0.12.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",

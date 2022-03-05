@@ -18,7 +18,6 @@ export const App = () => {
   const {
     user: { isAuth },
   } = useContext(AppContext);
-  console.log(isAuth);
   return (
     <Suspense fallback={<Spinner />}>
       <BrowserRouter>
