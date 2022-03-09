@@ -13,7 +13,7 @@ const User = React.lazy(() => import("./pages/User"));
 const NotRegisteredUser = React.lazy(() => import("./pages/NotRegisteredUser"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const NavBar = React.lazy(() => import("./components/NavBar"));
-
+//import NavBar from "./components/NavBar";
 export const App = () => {
   const {
     user: { isAuth },
